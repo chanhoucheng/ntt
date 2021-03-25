@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hi, {{ current_user.username }}!</h1>
+{% for post in posts %}
+<h3>{{post.title}}</h2>
+    <div>
+        <p>{{ current_user.username }} says:
+            {% if post.approved==false%}
+            {% if admin==true %}
+            <b>for approval:<a href="/view/{{ post.id}}">{{ post.title }}</a></b>
+            {% else %}
+            <b>for approval:{{ post.title }}</b>
+            {% endif %}
+            {% else %}
+            <b>approved:<a href="/view/{{ post.id}}">{{ post.title }}</a></p></b>
+            {% endif %}
+        </p>
+    </div>
+    {% endfor %}
+{% endblock %}
